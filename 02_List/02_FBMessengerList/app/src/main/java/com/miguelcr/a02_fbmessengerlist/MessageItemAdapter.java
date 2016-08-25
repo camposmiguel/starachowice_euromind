@@ -42,6 +42,7 @@ public class MessageItemAdapter extends ArrayAdapter {
         TextView name = (TextView)v.findViewById(R.id.text_view_name);
         TextView message = (TextView)v.findViewById(R.id.text_view_message);
         TextView time = (TextView)v.findViewById(R.id.text_view_time);
+        ImageView online = (ImageView)v.findViewById(R.id.image_view_online);
 
         // Get current object
         MessageItem current = values.get(position);
@@ -49,12 +50,18 @@ public class MessageItemAdapter extends ArrayAdapter {
         String currentName = current.getName();
         String currentMessage = current.getText();
         String currentTime = current.getTime();
+        boolean isOnline = current.isOnline();
 
         // Set values to view components
         name.setText(currentName);
         message.setText(currentMessage);
         time.setText(currentTime);
         Picasso.with(ctx).load(currentPhoto).into(photo);
+        if(isOnline) {
+            online.setVisibility(View.VISIBLE);
+        }
+
+     
 
         return v;
     }

@@ -8,12 +8,23 @@ public class MessageItem {
     private String photo;
     private String text;
     private String time;
+    private boolean online;
+    private boolean unread;
 
-    public MessageItem(String name, String photo, String text, String time) {
+    public MessageItem(String name, String photo, String text, String time, boolean online) {
         this.name = name;
         this.photo = photo;
         this.text = text;
         this.time = time;
+        this.online = online;
+    }
+
+    public boolean isOnline() {
+        return online;
+    }
+
+    public void setOnline(boolean online) {
+        this.online = online;
     }
 
     public String getTime() {
