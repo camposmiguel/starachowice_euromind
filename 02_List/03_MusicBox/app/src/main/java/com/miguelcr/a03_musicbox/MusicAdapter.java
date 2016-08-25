@@ -5,6 +5,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.util.List;
 
@@ -32,31 +34,18 @@ public class MusicAdapter extends ArrayAdapter {
         View v = inflater.inflate(layout, parent, false);
 
 
-        // GEt references to view components
-        ImageView photo = (ImageView) v.findViewById(R.id.image_view_photo);
-        TextView name = (TextView)v.findViewById(R.id.text_view_name);
-        TextView message = (TextView)v.findViewById(R.id.text_view_message);
-        TextView time = (TextView)v.findViewById(R.id.text_view_time);
-        ImageView online = (ImageView)v.findViewById(R.id.image_view_online);
+        // Get references to view components
+        ImageView icon = (ImageView) v.findViewById(R.id.image_view_instrument);
+        TextView name = (TextView)v.findViewById(R.id.text_view_instrument);
 
         // Get current object
-        MessageItem current = values.get(position);
-        String currentPhoto = current.getPhoto();
+        MusicItem current = values.get(position);
+        int currentIcon = current.getIcon();
         String currentName = current.getName();
-        String currentMessage = current.getText();
-        String currentTime = current.getTime();
-        boolean isOnline = current.isOnline();
 
         // Set values to view components
+        icon.setImageResource(currentIcon);
         name.setText(currentName);
-        message.setText(currentMessage);
-        time.setText(currentTime);
-        Picasso.with(ctx).load(currentPhoto).into(photo);
-        if(isOnline) {
-            online.setVisibility(View.VISIBLE);
-        }
-
-
 
         return v;
     }
