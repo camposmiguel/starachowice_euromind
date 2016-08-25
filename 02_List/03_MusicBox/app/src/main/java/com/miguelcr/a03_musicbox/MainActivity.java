@@ -14,7 +14,7 @@ public class MainActivity extends AppCompatActivity {
     private List<MusicItem> instruments;
     private MusicAdapter adapter;
     SoundPool soundPool;
-    int soundGuitar;
+    int soundGuitar, soundDrum;
 
 
     @Override
@@ -24,17 +24,6 @@ public class MainActivity extends AppCompatActivity {
 
         lista = (GridView) findViewById(R.id.grid_view);
         instruments = new ArrayList<MusicItem>();
-
-        instruments.add(new MusicItem(
-                R.drawable.ic_guitar,
-                "Guitar",
-                R.raw.guitar_sound
-        ));
-
-        adapter = new MusicAdapter(MainActivity.this,
-                R.layout.music_item,instruments);
-
-        lista.setAdapter(adapter);
 
         // Player properties
         AudioAttributes aa = new AudioAttributes.Builder()
@@ -49,6 +38,25 @@ public class MainActivity extends AppCompatActivity {
 
         // Load sound of guitar
         soundGuitar = soundPool.load(this,R.raw.guitar_sound,1);
+        soundDrum = soundPool.load(this,R.raw.drum_sound,1);
+
+        instruments.add(new MusicItem(
+                R.drawable.ic_guitar,
+                "Guitar",
+                soundGuitar
+        ));
+
+        instruments.add(new MusicItem(
+                R.drawable.ic_drum,
+                "Drum",
+                soundDrum
+        ));
+
+        adapter = new MusicAdapter(MainActivity.this,
+                R.layout.music_item,instruments);
+
+        lista.setAdapter(adapter);
+
 
 
     }
