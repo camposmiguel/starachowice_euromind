@@ -11,12 +11,21 @@ public class MessageItem {
     private boolean online;
     private boolean unread;
 
-    public MessageItem(String name, String photo, String text, String time, boolean online) {
+    public MessageItem(String name, String photo, String text, String time, boolean online, boolean unread) {
         this.name = name;
         this.photo = photo;
         this.text = text;
         this.time = time;
         this.online = online;
+        this.unread = unread;
+    }
+
+    public boolean isUnread() {
+        return unread;
+    }
+
+    public void setUnread(boolean unread) {
+        this.unread = unread;
     }
 
     public boolean isOnline() {

@@ -27,21 +27,24 @@ public class MainActivity extends AppCompatActivity {
                 "https://s3.amazonaws.com/uifaces/faces/twitter/jsa/128.jpg",
                 "Nice to meet you Elena!",
                 "5:57PM",
-                true));
+                true,
+                false));
 
         messages.add(new MessageItem(
                 "Chloe bower",
                 "https://s3.amazonaws.com/uifaces/faces/twitter/kfriedson/128.jpg",
                 "You: Did I leave my umbrella at your place?",
                 "9:10AM",
-                false));
+                false,
+                true));
 
         messages.add(new MessageItem(
                 "Roxanne Clediere",
                 "https://s3.amazonaws.com/uifaces/faces/twitter/evagiselle/128.jpg",
                 "Roxanne send 3 photos",
                 "7:15AM",
-                true));
+                true,
+                false));
 
         // Adapter
         MessageItemAdapter adapter = new MessageItemAdapter(

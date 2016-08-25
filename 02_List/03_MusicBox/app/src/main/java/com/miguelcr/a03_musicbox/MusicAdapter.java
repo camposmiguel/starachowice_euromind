@@ -1,29 +1,22 @@
-package com.miguelcr.a02_fbmessengerlist;
+package com.miguelcr.a03_musicbox;
 
 import android.content.Context;
-import android.graphics.Typeface;
-import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
-import android.widget.TextView;
-
-import com.miguelcr.a02_fbmessengerlist.MessageItem;
-import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
 /**
- * Created by miguelcampos on 24/8/16.
+ * Created by miguelcampos on 25/8/16.
  */
-public class MessageItemAdapter extends ArrayAdapter {
+public class MusicAdapter extends ArrayAdapter {
     Context ctx;
-    List<MessageItem> values;
+    List<MusicItem> values;
     int layout;
 
-    public MessageItemAdapter(Context context, int resource, List<MessageItem> objects) {
+    public MusicAdapter(Context context, int resource, List<MusicItem> objects) {
         super(context, resource, objects);
 
         ctx = context;
@@ -53,7 +46,6 @@ public class MessageItemAdapter extends ArrayAdapter {
         String currentMessage = current.getText();
         String currentTime = current.getTime();
         boolean isOnline = current.isOnline();
-        boolean unread = current.isUnread();
 
         // Set values to view components
         name.setText(currentName);
@@ -64,15 +56,7 @@ public class MessageItemAdapter extends ArrayAdapter {
             online.setVisibility(View.VISIBLE);
         }
 
-        if(unread) {
-            name.setTypeface(null, Typeface.BOLD);
-            message.setTypeface(null, Typeface.BOLD);
-            time.setTypeface(null, Typeface.BOLD);
-            message.setTextColor(ContextCompat.getColor(ctx,android.R.color.black));
-            time.setTextColor(ContextCompat.getColor(ctx,android.R.color.black));
-        }
 
-     
 
         return v;
     }
