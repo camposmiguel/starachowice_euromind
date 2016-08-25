@@ -4,12 +4,14 @@ import android.media.AudioAttributes;
 import android.media.SoundPool;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.GridView;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
     private GridView lista;
     private List<MusicItem> instruments;
     private MusicAdapter adapter;
@@ -56,8 +58,12 @@ public class MainActivity extends AppCompatActivity {
                 R.layout.music_item,instruments);
 
         lista.setAdapter(adapter);
+        lista.setOnItemClickListener(this);
 
+    }
 
-
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        soundPool.play(instruments.get(position).getSound(),1,1,1,0,1);
     }
 }
