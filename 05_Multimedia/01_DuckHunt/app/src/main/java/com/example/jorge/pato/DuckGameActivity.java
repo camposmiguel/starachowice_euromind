@@ -1,8 +1,9 @@
 package com.example.jorge.pato;
 
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.graphics.Typeface;
+import android.media.AudioAttributes;
+import android.media.SoundPool;
 import android.os.CountDownTimer;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -23,6 +24,8 @@ public class DuckGameActivity extends AppCompatActivity {
     ImageView duckImageView;
     Random randomXPosition, randomYPosition;
     int screenWidth, screenHeight;
+    SoundPool soundPool;
+    int bgSound, duckSound;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,9 +56,30 @@ public class DuckGameActivity extends AppCompatActivity {
             public void onClick(View v) {
                 numKilledDucks++;
                 pointsTextView.setText(String.valueOf(numKilledDucks));
+                soundPool.play(duckSound,1,1,0,0,1);
                 generateDuckRandomPosition();
             }
         });
+
+
+        // Player properties
+        AudioAttributes aa = new AudioAttributes.Builder()
+                .setUsage(AudioAttributes.USAGE_ALARM)
+                .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
+                .build();
+
+        soundPool = new SoundPool.Builder()
+                .setMaxStreams(10)
+                .setAudioAttributes(aa)
+                .build();
+
+        duckSound = soundPool.load(this,R.raw.cuak,1);
+        bgSound = soundPool.load(this,R.raw.bg,1);
+
+        soundPool.play(bgSound,1,1,1,1,1);
+
+
+        // ********************
 
         startCountDownGame();
 
@@ -86,7 +110,7 @@ public class DuckGameActivity extends AppCompatActivity {
     }
 
     private void startCountDownGame() {
-        countDownGame = new CountDownTimer(5000, 1000) {
+        countDownGame = new CountDownTimer(60000, 1000) {
 
             public void onTick(long millisUntilFinished) {
                 timerTextView.setText( millisUntilFinished / 1000+"s");
@@ -107,9 +131,14 @@ public class DuckGameActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 // All we must to reset if user wants to play again
+                numKilledDucks = 0;
+                pointsTextView.setText("0");
                 startCountDownGame();
+                generateDuckRandomPosition();
+
             }
         });
+
         builder.setNegativeButton("Close", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -117,6 +146,6 @@ public class DuckGameActivity extends AppCompatActivity {
             }
         });
         builder.create();
-        builder.show();
+
     }
 }
