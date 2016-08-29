@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">"Pato "</string>
+    <string name="title_activity_pato">PatoActivity</string>
+    <string name="title_activity_principal">PrincipalActivity</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_ranking">RankingActivity</string>
+    <string name="btn_login">Login</string>
+</resources>
