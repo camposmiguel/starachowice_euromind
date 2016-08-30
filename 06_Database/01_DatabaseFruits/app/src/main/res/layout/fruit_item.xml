@@ -23,14 +23,39 @@
         android:text="Banana" />
 
     <TextView
+        android:id="@+id/button_sub"
+        android:background="@drawable/bg_circle_gray"
+        android:textColor="@android:color/white"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:padding="5dp"
+        android:layout_width="40dp"
+        android:gravity="center"
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@+id/textViewQuantity"
+        android:text="-"/>
+
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textViewQuantity"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
+        android:layout_toLeftOf="@+id/button_add"
         android:background="@drawable/bg_circle"
         android:padding="5dp"
         android:text="1"
         android:textColor="@android:color/white" />
+
+    <TextView
+        android:id="@+id/button_add"
+        android:background="@drawable/bg_circle_gray"
+        android:textColor="@android:color/white"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:padding="5dp"
+        android:layout_width="40dp"
+        android:gravity="center"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:text="+"/>
 </RelativeLayout>
