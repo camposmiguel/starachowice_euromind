@@ -14,10 +14,13 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.Polyline;
+import com.google.android.gms.maps.model.PolylineOptions;
 
 public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback, GoogleMap.OnMapClickListener {
 
     private GoogleMap mMap;
+    private LatLng lastPosition = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,16 +32,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         mapFragment.getMapAsync(this);
     }
 
-
-    /**
-     * Manipulates the map once available.
-     * This callback is triggered when the map is ready to be used.
-     * This is where we can add markers or lines, add listeners or move the camera. In this case,
-     * we just add a marker near Sydney, Australia.
-     * If Google Play services is not installed on the device, the user will be prompted to install
-     * it inside the SupportMapFragment. This method will only be triggered once the user has
-     * installed Google Play services and returned to the app.
-     */
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
@@ -50,7 +43,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 .title("Marker in Zespoł Skzoł, Starchowice, Poland")
                 .snippet("Lat: 51.054698, Lon: 21.063251"));
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(starachowice,15));
-
         mMap.setOnMapClickListener(this);
         
     }
@@ -64,6 +56,20 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_flag)));
 
         newMarker.showInfoWindow();
+
+        if(lastPosition!=null) {
+            newMarker.setIcon(BitmapDescriptorFactory.fromResource(R.drawable.ic_runner));
+
+            PolylineOptions rectOptions = new PolylineOptions()
+                    .add(lastPosition)
+                    .add(latLng)
+                    .width(10); // Closes the polyline.
+
+            Polyline polyline = mMap.addPolyline(rectOptions);
+
+        }
+
+        lastPosition = latLng;
 
     }
 
