@@ -8,7 +8,7 @@ import org.greenrobot.greendao.generator.Schema;
 public class MyGreenDaoDatabaseGenerator {
 
     public static void main(String[] args) throws Exception {
-        Schema schema = new Schema(1, "com.miguelcr.fruits");
+        Schema schema = new Schema(1, "com.miguelcr.a04_fruits.db");
 
         databaseFruits(schema);
 
