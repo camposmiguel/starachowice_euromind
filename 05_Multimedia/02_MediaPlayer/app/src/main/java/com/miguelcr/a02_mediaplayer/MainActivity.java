@@ -2,12 +2,14 @@ package com.miguelcr.a02_mediaplayer;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
     ListView lista;
     List<SongItem> songs;
 
@@ -22,20 +24,37 @@ public class MainActivity extends AppCompatActivity {
 
         //TODO: complete with real data to show items in song list
 
-        songs.add(new SongItem(...));
-        songs.add(new SongItem(...));
-        songs.add(new SongItem(...));
+        songs.add(new SongItem("https://i.ytimg.com/vi/UfSLlD2cGAY/maxresdefault.jpg",
+                "Sorry",
+                "Justin Fever"));
+
+        songs.add(new SongItem("",
+                "Thriller",
+                "Michael Jackson"));
 
 
         MediaPlayerAdapter mySongAdapter = new MediaPlayerAdapter(
-                MaintActivity.this,
+                MainActivity.this,
                 R.layout.song_item,
                 songs
         );
 
         lista.setAdapter(mySongAdapter);
 
+        lista.setOnItemClickListener(this);
 
 
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        SongItem current = songs.get(position);
+
+        Intent i = ...
+
+        i.putExtra("title",....);
+        i.putExtra("cover",...);
+        i.putExtra("artist",...);
+        startActivity....
     }
 }

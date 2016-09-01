@@ -1,9 +1,12 @@
 package com.miguelcr.a02_mediaplayer;
 
 import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
@@ -27,10 +30,32 @@ public class MediaPlayerAdapter extends ArrayAdapter<SongItem> {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        return super.getView(position, convertView, parent);
+        LayoutInflater inflater = (LayoutInflater) ctx.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-        //TODO: complete the code to draw one song item
+        View v = inflater.inflate(layout, parent, false);
 
-        Picasso.with(ctx).load("http://i.imgur.com/DvpvklR.png").into(imageView);
+
+        // GEt references to view components
+        ImageView cover = (ImageView) v.findViewById(R.id.imageViewCover);
+        TextView title = (TextView)v.findViewById(R.id.textViewTitle);
+        TextView artist = (TextView)v.findViewById(R.id.textViewArtist);
+
+
+        // Get current object
+        SongItem current = values.get(position);
+        String currentCover = current.getCover();
+        String currentTitle = current.getTitle();
+        String currentArtist = current.getArtist();
+
+
+        // Set values to view components
+        title.setText(currentTitle);
+        artist.setText(currentArtist);
+        if(!currentCover.isEmpty()) {
+            Picasso.with(ctx).load(currentCover).resize(100,100).into(cover);
+        }
+
+        return v;
+
     }
 }
