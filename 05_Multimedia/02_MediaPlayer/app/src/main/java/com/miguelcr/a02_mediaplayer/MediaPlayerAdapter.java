@@ -52,7 +52,7 @@ public class MediaPlayerAdapter extends ArrayAdapter<SongItem> {
         title.setText(currentTitle);
         artist.setText(currentArtist);
         if(!currentCover.isEmpty()) {
-            Picasso.with(ctx).load(currentCover).resize(100,100).into(cover);
+            Picasso.with(ctx).load(currentCover).resize(120,120).into(cover);
         }
 
         return v;

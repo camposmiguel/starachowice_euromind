@@ -1,5 +1,6 @@
 package com.miguelcr.a02_mediaplayer;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -32,6 +33,10 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 "Thriller",
                 "Michael Jackson"));
 
+        songs.add(new SongItem("http://www.music-bazaar.com/album-images/vol12/627/627651/2473052-big/The-Very-Best-Of-AC-DC-CD1-cover.jpg",
+                "Back in Black",
+                "AC/DC"));
+
 
         MediaPlayerAdapter mySongAdapter = new MediaPlayerAdapter(
                 MainActivity.this,
@@ -50,11 +55,11 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         SongItem current = songs.get(position);
 
-        Intent i = ...
+        Intent i = new Intent(MainActivity.this,PlayerActivity.class);
 
-        i.putExtra("title",....);
-        i.putExtra("cover",...);
-        i.putExtra("artist",...);
-        startActivity....
+        i.putExtra("title",current.getTitle());
+        i.putExtra("cover",current.getCover());
+        i.putExtra("artist",current.getArtist());
+        startActivity(i);
     }
 }

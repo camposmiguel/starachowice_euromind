@@ -16,7 +16,8 @@
         android:id="@+id/imageViewCover"
         android:src="@drawable/ic_singer"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignParentLeft="true"
+        android:layout_marginRight="16dp"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -24,9 +25,7 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Title"
         android:id="@+id/textViewTitle"
-        android:layout_below="@+id/imageViewCover"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp" />
+        android:layout_toRightOf="@+id/imageViewCover" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -35,14 +34,14 @@
         android:text="Artist"
         android:id="@+id/textViewArtist"
         android:layout_below="@+id/textViewTitle"
-        android:layout_centerHorizontal="true" />
+        android:layout_toRightOf="@+id/imageViewCover"/>
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/imageViewPlayPause"
         android:layout_below="@+id/textViewArtist"
-        android:layout_centerHorizontal="true"
+        android:layout_toRightOf="@+id/imageViewCover"
         android:layout_marginTop="45dp"
         android:src="@drawable/ic_pause" />
 </RelativeLayout>
